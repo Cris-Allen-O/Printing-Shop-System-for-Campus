@@ -1,4 +1,5 @@
 Printing Shop System for Campus
+Github URL: https://github.com/Cris-Allen-O/Printing-Shop-System-for-Campus
 
 
 
@@ -44,7 +45,7 @@ document have, what size or type the document is.
 6. Non Functional Requirements Performance, Usability, constraints.
 -Performance: The system will be able to handle a whole day workload
 -Usability: The system will work on windows 10 and above
--Constraints: 
+-Constraints: Must run as a native Windows application (Windows 10/11).
 
 
 7. Data Model Order Fields:
