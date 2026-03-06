@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Printing Shop Order Management</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <h1>📋 Printing Shop Order Management</h1>
+
+  <section id="create-order">
+    <h2>Create New Order</h2>
+    <form id="order-form">
+      <input type="text" id="student_name" placeholder="Student Name" required />
+      <input type="text" id="document_name" placeholder="Document Name" required />
+      <input type="number" id="pages" placeholder="Number of Pages" min="1" required />
+      <select id="print_type" required>
+        <option value="">Select Print Type</option>
+        <option value="B&amp;W">B&amp;W (₱2.00/page)</option>
+        <option value="Colored">Colored (₱5.00/page)</option>
+        <option value="Photo Paper">Photo Paper (₱20.00/page)</option>
+      </select>
+      <button type="submit">Submit Order</button>
+    </form>
+  </section>
+
+  <section id="orders-list">
+    <h2>Active Orders</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Student Name</th>
+          <th>Document</th>
+          <th>Pages</th>
+          <th>Print Type</th>
+          <th>Total Cost</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

@@ -9,7 +9,8 @@ A FastAPI-based backend system for managing printing shop orders on campus. This
 - Payment processing with change calculation
 - Order status tracking (Pending, Paid, Completed)
 - RESTful API endpoints
-- JSON-based data persistence
+- SQLite database persistence via SQLAlchemy
+- Simple HTML/CSS/JavaScript frontend served from `/`
 
 ## Prerequisites
 
@@ -56,6 +57,7 @@ This will install:
 - FastAPI: Web framework
 - Uvicorn: ASGI server
 - Pydantic: Data validation
+- SQLAlchemy: Object-relational mapper for database management
 
 ### 5. Run the Application
 
@@ -84,6 +86,12 @@ The server will start on `http://localhost:8000`
 | POST | `/orders/{id}/pay` | Process payment for an order |
 | DELETE | `/orders/{id}` | Delete an order |
 
+## Frontend
+
+A basic single‑page UI is provided under the `static/` folder and served at the root (`http://localhost:8000/`).
+
+It allows you to create orders, view the list, process payments and delete orders without using curl or Postman. The JavaScript code uses the same REST API endpoints described below.
+
 ## Testing the API
 
 ### Create an Order (POST /orders)
@@ -106,20 +114,24 @@ Invoke-WebRequest -Uri "http://localhost:8000/orders/1/pay" -Method POST -Conten
 
 ## Data Persistence
 
-Orders are automatically saved to `orders.json` in the project directory. The data persists between server restarts.
+Orders are stored in an SQLite database file `printing_shop.db` located at the project root. The database is managed through SQLAlchemy and tables are created automatically when the application starts. You can inspect the file with any SQLite viewer if needed.
 
 ## Project Structure
 
 ```
 printing-shop-system/
 ├── main.py                 # FastAPI application entry point
-├── models.py              # Pydantic data models
-├── database.py            # Data persistence logic
-├── requirements.txt       # Python dependencies
+├── models.py               # SQLAlchemy models + Pydantic schemas
+├── database.py             # Database configuration (SQLite + SQLAlchemy)
+├── requirements.txt        # Python dependencies
 ├── routes/
-│   └── orders.py          # Order management endpoints
-├── orders.json            # Order data storage (auto-generated)
-└── README.md              # This file
+│   └── orders.py           # Order management endpoints using DB
+├── printing_shop.db        # SQLite database file (auto-generated)
+├── static/                 # Frontend assets
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+└── README.md               # This file
 ```
 
 ## Development

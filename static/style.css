@@ -1,0 +1,267 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+  color: #333;
+}
+
+/* Header */
+h1 {
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-weight: 700;
+}
+
+/* Container for sections */
+section {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  padding: 30px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section h2 {
+  color: #667eea;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  border-bottom: 3px solid #667eea;
+  padding-bottom: 10px;
+}
+
+/* Form Styling */
+form {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr 1fr;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background-color: #f9f9ff;
+}
+
+select {
+  cursor: pointer;
+}
+
+input[type="text"]::placeholder {
+  color: #9c9c9c;
+}
+
+form button {
+  grid-column: 1 / -1;
+  padding: 14px 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+form button:active {
+  transform: translateY(0);
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+th {
+  color: white;
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+td {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.95rem;
+}
+
+tbody tr {
+  transition: all 0.3s ease;
+}
+
+tbody tr:hover {
+  background-color: #f5f5ff;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Status Badge */
+td:nth-child(7) {
+  font-weight: 600;
+  border-radius: 4px;
+  padding-left: 10px;
+}
+
+/* Status color coding */
+td:nth-child(7)::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+/* Assuming status is in column 7 */
+table tbody tr td:nth-child(7) {
+  color: #f39c12;
+}
+
+/* Action Buttons */
+button[onclick*="del"],
+button[onclick*="pay"] {
+  padding: 8px 14px;
+  margin: 4px 4px 4px 0;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+button[onclick*="pay"] {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+button[onclick*="pay"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+button[onclick*="del"] {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(245, 87, 108, 0.3);
+}
+
+button[onclick*="del"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 87, 108, 0.5);
+}
+
+button[onclick*="pay"]:active,
+button[onclick*="del"]:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  section {
+    padding: 20px;
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  form button {
+    grid-column: 1;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
+
+  th,
+  td {
+    padding: 10px;
+  }
+
+  button[onclick*="del"],
+  button[onclick*="pay"] {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  section {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  section h2 {
+    font-size: 1.3rem;
+  }
+
+  th,
+  td {
+    padding: 8px;
+  }
+
+  table {
+    font-size: 0.8rem;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select {
+    padding: 10px;
+    font-size: 16px;
+  }
+}

@@ -1,25 +1,24 @@
-import json
-import os
-from typing import List
-from models import Order
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
-DATA_FILE = "orders.json"
+from models import Base
 
-def load_orders() -> List[Order]:
-    if os.path.exists(DATA_FILE):
-        with open(DATA_FILE, "r") as f:
-            data = json.load(f)
-            return [Order(**item) for item in data]
-    return []
+# SQLite database for production and development
+DATABASE_URL = "sqlite:///./printing_shop.db"
 
-def save_orders(orders: List[Order]):
-    with open(DATA_FILE, "w") as f:
-        json.dump([order.dict() for order in orders], f, indent=4)
+engine = create_engine(
+    DATABASE_URL, connect_args={"check_same_thread": False}
+)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# In-memory storage
-orders_db: List[Order] = load_orders()
+# Create tables if they don't exist
+Base.metadata.create_all(bind=engine)
 
-def get_next_order_id() -> int:
-    if orders_db:
-        return max(order.order_id for order in orders_db if order.order_id) + 1
-    return 1
+# Dependency for FastAPI routes
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
