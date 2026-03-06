@@ -1,0 +1,75 @@
+Printing Shop Order Management System
+
+
+
+1. Project Overview Describe the application
+
+-This system is a printing shop order management system in which printing shop cashier/worker, can automate the order process instead of the manual
+accepting, and working on the order.
+
+
+2. Problem statement What problem does the client face?
+-During rush hours where everyone is running on the printing shop to print their documents, being a worker in that printing shop can be a hassle,
+surrounded by people, rushing for their document to be printed for whatever reason may it be deadline or other reason. Being surrounded by a bunch
+of customers in a limited and small shop space can build up a lot of pressure for the cashier/worker, and mistake can happen such as, forgetting to
+accept payment, inaccuracy with the order such as wrong amount of copy printed, or wrong instruction such as colored or not colored and other reason.
+this can cause the worker to be pressured which is not good for their cortisol level, which can lead to even more inaccuracy like orders being duplicated, or their work lost which 
+ultimately results to potentially lost income.
+
+3. Objectives List system goals
+- The system must be able to Accept printing orders
+- The system will be able to categorize the price of the type of printing service such as 
+	Black & White: PHP 2.00/page 	
+	Colored:       PHP 5.00/page
+ 	Photo Paper:   PHP 20.00/page
+
+
+- The system must identify order by id, customer name, document name, how many pages does the 
+document have, what size or type the document is.
+- The system calculates the total cost via price and payment then generate the change if there's any.
+- Allows viewing list of orders 
+- Retrieves order information
+
+4. Users Primary users of the system
+-Cashier/Clerk - worker, owner
+
+
+5. Functional Requirements
+-The system shall allow the shop clerk to accept printing order details such as student_name, document_name, pages, print_type.
+-The system will be able to accept input payment and calculate the total cost and its exchange if there is some
+-The system will allow the shop clerk to view all the orders
+-The system shall allow the shop clerk to Retreive order information
+
+
+6. Non Functional Requirements Performance, Usability, constraints.
+-Performance: The system will be able to handle a whole day workload
+-Usability: The system will work on windows 10 and above
+-Constraints: 
+
+
+7. Data Model Order Fields:
+     FIELD               TYPE                DESCRIPTION
+order_id             Integer (PK)        Auto-incrementing unique identifier.
+student_name          String             Name of the customer.   
+document_name         String             Title of the file.
+pages                Integer             Total number of pages.
+print_type            Enum               B&W, Colored, or Photo Paper.
+total_cost           Decimal             Calculated total.
+status               String             Order status (e.g., Pending, Paid, Completed).
+
+
+8. Proposed API Endpoints Example POST/ orders GET GET /orders GET /orders/{id}
+
+Method                  Endpoint                      Description
+POST                    /orders                  Create a new printing order.
+GET                     /orders                  Fetch the list of all active orders.
+GET                     /orders/{id}             Retrieve specific details of a single order.
+PUT                     /orders/{id}             Update order details or status.
+POST                    /orders/{id}/pay         Accept payment and calculate change.
+DELETE                  /orders/{id}             Remove an order from the system.
+
+
+
+
+
+

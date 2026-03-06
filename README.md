@@ -1,0 +1,147 @@
+# Printing Shop Order Management System
+
+A FastAPI-based backend system for managing printing shop orders on campus. This system automates order processing, pricing calculation, and payment handling to reduce errors during rush hours.
+
+## Features
+
+- Create and manage printing orders
+- Automatic pricing calculation (B&W: ₱2/page, Colored: ₱5/page, Photo Paper: ₱20/page)
+- Payment processing with change calculation
+- Order status tracking (Pending, Paid, Completed)
+- RESTful API endpoints
+- JSON-based data persistence
+
+## Prerequisites
+
+- Python 3.8 or higher
+- Windows 10 or above (as per requirements)
+
+## Installation and Setup
+
+### 1. Navigate to the Project Directory
+
+Open PowerShell and navigate to the project folder:
+
+```powershell
+cd "C:\Users\Admin\Documents\SCHOOL FILES\SY 25-26 BSIT 3rdYear 2ndSem\AppDev\Printing Shop System for Campus"
+```
+
+### 2. Create Virtual Environment (if not already created)
+
+If the `.venv` folder doesn't exist, create a virtual environment:
+
+```powershell
+python -m venv .venv
+```
+
+### 3. Activate Virtual Environment
+
+Activate the virtual environment:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+You should see `(.venv)` at the beginning of your PowerShell prompt.
+
+### 4. Install Dependencies
+
+Install the required Python packages:
+
+```powershell
+pip install -r requirements.txt
+```
+
+This will install:
+- FastAPI: Web framework
+- Uvicorn: ASGI server
+- Pydantic: Data validation
+
+### 5. Run the Application
+
+Start the FastAPI server with auto-reload for development:
+
+```powershell
+uvicorn main:app --reload
+```
+
+The server will start on `http://localhost:8000`
+
+### 6. Access the API
+
+- **API Documentation**: Visit `http://localhost:8000/docs` for interactive Swagger UI
+- **Alternative Docs**: Visit `http://localhost:8000/redoc` for ReDoc documentation
+- **Root Endpoint**: `http://localhost:8000/` returns a welcome message
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/orders` | Create a new printing order |
+| GET | `/orders` | Get all orders |
+| GET | `/orders/{id}` | Get specific order by ID |
+| PUT | `/orders/{id}` | Update order details |
+| POST | `/orders/{id}/pay` | Process payment for an order |
+| DELETE | `/orders/{id}` | Delete an order |
+
+## Testing the API
+
+### Create an Order (POST /orders)
+
+```powershell
+Invoke-WebRequest -Uri "http://localhost:8000/orders" -Method POST -ContentType "application/json" -Body '{"student_name": "John Doe", "document_name": "Thesis.pdf", "pages": 10, "print_type": "Colored"}'
+```
+
+### Get All Orders (GET /orders)
+
+```powershell
+Invoke-WebRequest -Uri "http://localhost:8000/orders" -Method GET
+```
+
+### Process Payment (POST /orders/{id}/pay)
+
+```powershell
+Invoke-WebRequest -Uri "http://localhost:8000/orders/1/pay" -Method POST -ContentType "application/json" -Body '{"amount": 50.0}'
+```
+
+## Data Persistence
+
+Orders are automatically saved to `orders.json` in the project directory. The data persists between server restarts.
+
+## Project Structure
+
+```
+printing-shop-system/
+├── main.py                 # FastAPI application entry point
+├── models.py              # Pydantic data models
+├── database.py            # Data persistence logic
+├── requirements.txt       # Python dependencies
+├── routes/
+│   └── orders.py          # Order management endpoints
+├── orders.json            # Order data storage (auto-generated)
+└── README.md              # This file
+```
+
+## Development
+
+To stop the server, press `Ctrl+C` in the terminal.
+
+To deactivate the virtual environment:
+
+```powershell
+deactivate
+```
+
+## Troubleshooting
+
+- **Port already in use**: Change the port with `uvicorn main:app --reload --port 8001`
+- **Permission errors**: Run PowerShell as Administrator
+- **Import errors**: Ensure virtual environment is activated and dependencies are installed
+
+## Requirements Compliance
+
+- ✅ Handles whole day workload (lightweight FastAPI application)
+- ✅ Works on Windows 10 and above
+- ✅ Automates order acceptance and processing
+- ✅ Calculates pricing and change accurately
+- ✅ Provides order management functionality
